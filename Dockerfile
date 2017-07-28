@@ -61,11 +61,12 @@ RUN rm -f /etc/httpd/conf.d/*
 ## Changing working directory to the Apache location
 WORKDIR /etc/httpd
 
-COPY docker-assets/entrypoint /usr/bin
+COPY docker-assets/entrypoint              /usr/bin
+COPY docker-assets/initialize_httpd.sh     /usr/bin
 COPY docker-assets/generate_server_cert.sh /usr/bin
-COPY docker-assets/manageiq.conf /etc/httpd/conf.d/
+COPY docker-assets/manageiq.conf           /etc/httpd/conf.d/
 
-RUN chmod +x /usr/bin/generate_server_cert.sh
+RUN chmod +x /usr/bin/initialize_httpd.sh /usr/bin/generate_server_cert.sh
 
 EXPOSE 80 443
 

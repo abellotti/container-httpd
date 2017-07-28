@@ -1,14 +1,6 @@
 #!/bin/bash
 
-# Define container environment variables needed by the httpd process
-cat - <<!END! >> /etc/sysconfig/httpd
-
-#
-# Container Environment Variables needed
-#
-MANAGEIQ_SERVICE_NAME = "${MANAGEIQ_SERVICE_NAME}"
-!END!
-
+/usr/bin/initialize_httpd.sh
 /usr/bin/generate_server_cert.sh
 
 exec "$@"
